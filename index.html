@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ប្រាក់សោធនក្រោមបេឡាជាតិសន្តិសុខសង្គម</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600;700&family=Spectral:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F1E4; --paper-deep:#EFE6D2; --ink:#212A3E; --ink-soft:#5B6478;
+    --gold:#B8862F; --gold-deep:#8F6621; --jade:#3F7A5C; --jade-soft:#E4EFE7;
+    --clay:#B85C2E; --clay-soft:#F5E6DB; --line:#DDD2B8; --white:#FFFDF8; --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Noto Sans Khmer','Noto Serif Khmer',sans-serif;line-height:1.6;padding:0 0 2rem;}
+  a{color:var(--gold-deep);}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px;}
+
+  /* ===== STICKY TABS ===== */
+  .tabs-sticky-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    padding: 10px 16px 6px 16px;
+    margin: 0 auto 0 auto;
+    max-width: 100%;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 2px 8px rgba(33,42,62,0.06);
+    display: flex;
+    justify-content: center;
+  }
+  .tabs-inner {
+    max-width: 960px;
+    width: 100%;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 0 4px;
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 8px 8px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    white-space: normal;
+    position: relative;
+    border: 1.5px solid transparent;
+  }
+  .tab-btn .num {
+    display: block;
+    font-family: 'Spectral', serif;
+    font-size: 15px;
+    color: var(--gold-deep);
+    margin-bottom: 1px;
+    font-weight: 600;
+  }
+  .tab-btn .label {
+    font-size: 10.5px;
+    font-weight: 500;
+  }
+  .tab-btn:hover {
+    background: rgba(184,134,47,0.08);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+  .tab-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--white);
+    box-shadow: 0 2px 12px rgba(33,42,62,0.15);
+  }
+  .tab-btn.active .num {
+    color: var(--gold);
+  }
+  .tab-btn.active:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--white);
+  }
+
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  /* ===== COMPACT CARDS ===== */
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:1rem 1.2rem;
+    margin-top:1rem;
+    box-shadow:0 1px 0 rgba(33,42,62,0.03);
+  }
+  .card h2{font-family:'Noto Serif Khmer', serif;font-size:16px;margin:0 0 2px;}
+  .card .sub{color:var(--ink-soft);font-size:12.5px;margin:0 0 0.8rem;}
+
+  .interim-card{
+    background:var(--jade-soft);
+    border:1px solid #C7DECE;
+    border-radius:var(--radius);
+    padding:0.7rem 1rem;
+    margin-bottom:0.8rem;
+    font-size:12.5px;
+  }
+  .interim-card .tag{
+    display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:0.03em;
+    background:var(--jade);color:var(--white);padding:2px 8px;border-radius:999px;margin-bottom:4px;
+  }
+  .interim-card h4{margin:0 0 3px;font-family:'Noto Serif Khmer',serif;font-size:13px;color:var(--jade);}
+  .interim-card p.expl{margin:0 0 4px;font-size:12px;color:var(--ink);}
+  .interim-card ul{margin:3px 0 0;padding-left:16px;font-size:11.5px;color:var(--ink);}
+  .interim-card li{margin-bottom:1px;}
+
+  .info-list{margin:0;padding-left:16px;font-size:12.5px;}
+  .info-list li{margin-bottom:4px;}
+  .info-list b{color:var(--ink);}
+
+  .note-box{margin-top:0.8rem;padding:0.6rem 0.8rem;background:var(--clay-soft);border:1px solid #E5C6AC;border-radius:8px;font-size:12px;color:var(--ink);}
+  .death-box{margin-top:0.8rem;padding:0.6rem 0.8rem;background:#EFEAF5;border:1px solid #D8CCE8;border-radius:8px;font-size:12px;color:var(--ink);}
+  .death-box .tag{display:inline-block;font-size:9.5px;font-weight:700;background:#6B5498;color:var(--white);padding:2px 8px;border-radius:999px;margin-bottom:3px;}
+
+  /* ===== FORM ELEMENTS ===== */
+  .path-select{margin-bottom:0.8rem;}
+  .path-select label.grouplabel{display:block;font-size:11px;color:var(--ink-soft);margin-bottom:4px;font-weight:600;}
+  .radio-option{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;margin-bottom:4px;cursor:pointer;transition:border-color .15s ease;}
+  .radio-option:hover{border-color:var(--gold);}
+  .radio-option.checked{border-color:var(--gold);background:#FBF6EA;}
+  .radio-option input{margin-top:2px;flex-shrink:0;}
+  .radio-option .opt-text b{display:block;font-size:12px;margin-bottom:1px;}
+  .radio-option .opt-text span{font-size:10.5px;color:var(--ink-soft);}
+
+  .currency-toggle{display:inline-flex;background:var(--paper-deep);border-radius:999px;padding:3px;margin-bottom:0.8rem;}
+  .currency-toggle button{border:none;background:transparent;padding:4px 14px;border-radius:999px;font-family:inherit;font-size:11.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:all .18s ease;}
+  .currency-toggle button.active{background:var(--ink);color:var(--white);}
+
+  .period-row{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end;padding:8px 0;border-bottom:1px dashed var(--line);}
+  .period-row:first-of-type{padding-top:0;}
+  .field label{display:block;font-size:10.5px;color:var(--ink-soft);margin-bottom:3px;font-weight:500;}
+  .field .input-affix{position:relative;}
+  .field input{width:100%;padding:6px 10px;border:1.5px solid var(--line);border-radius:6px;font-family:'Spectral',serif;font-size:13px;color:var(--ink);background:var(--paper);transition:border-color .15s ease;}
+  .field input:focus{outline:none;border-color:var(--gold);}
+  .field .unit{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--ink-soft);pointer-events:none;}
+  .remove-btn{width:30px;height:36px;border:1.5px solid var(--line);background:var(--white);border-radius:6px;color:var(--clay);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s ease;}
+  .remove-btn:hover{background:var(--clay-soft);}
+  .remove-btn:disabled{opacity:0.25;cursor:not-allowed;}
+  .add-row-btn{margin-top:6px;width:100%;padding:6px;border:1.5px dashed var(--gold);background:transparent;border-radius:6px;color:var(--gold-deep);font-family:inherit;font-weight:600;font-size:12px;cursor:pointer;transition:background .15s ease;}
+  .add-row-btn:hover{background:rgba(184,134,47,0.08);}
+
+  .timeline-block{margin-top:1rem;}
+  .timeline-block h3{font-family:'Noto Serif Khmer',serif;font-size:14px;margin:0 0 2px;}
+  .timeline-block .sub{font-size:11px;color:var(--ink-soft);margin:0 0 0.4rem;}
+  .timeline{position:relative;height:34px;border-radius:6px;overflow:hidden;display:flex;border:1px solid var(--line);}
+  .zone{position:relative;display:flex;align-items:center;justify-content:center;}
+  .zone-bonus{background:var(--jade-soft);flex:15;}
+  .zone-standard{background:var(--clay-soft);flex:15;}
+  .zone-label{font-size:10px;font-weight:600;letter-spacing:0.01em;}
+  .zone-bonus .zone-label{color:var(--jade);}
+  .zone-standard .zone-label{color:var(--clay);}
+  .marker{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);transition:left .35s cubic-bezier(.4,0,.2,1);}
+  .marker::after{content:attr(data-label);position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:var(--ink);white-space:nowrap;background:var(--white);padding:1px 5px;border-radius:3px;border:1px solid var(--line);}
+  .timeline-scale{display:flex;justify-content:space-between;font-size:9px;color:var(--ink-soft);margin-top:3px;}
+
+  /* ===== RESULTS ===== */
+  .result{margin-top:1rem;padding:1rem 1.2rem;background:linear-gradient(160deg, var(--ink) 0%, #2C3958 100%);border-radius:var(--radius);color:var(--white);}
+  .result.lump{background:linear-gradient(160deg, #5A4326 0%, #8F6621 100%);}
+  .result .label{font-size:11px;letter-spacing:0.03em;color:#C9CFE0;margin:0 0 3px;}
+  .result .amount{font-family:'Spectral',serif;font-weight:600;font-size:clamp(24px,3.8vw,36px);margin:0;color:var(--white);}
+  .result .amount .cur{font-size:0.5em;color:var(--gold);margin-right:5px;vertical-align:middle;}
+  .result .secondary{color:#C9CFE0;font-size:12px;margin-top:3px;}
+  .result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid rgba(255,255,255,0.14);}
+  .stat .k{font-size:9.5px;color:#A9B0C4;margin:0 0 2px;}
+  .stat .v{font-size:13px;font-weight:600;margin:0;font-family:'Spectral',serif;}
+  .badge{display:inline-block;margin-top:0.6rem;padding:3px 10px;border-radius:999px;font-size:10.5px;font-weight:600;}
+  .badge.bonus{background:rgba(63,122,92,0.25);color:#9FE3BE;}
+  .badge.standard{background:rgba(184,92,46,0.25);color:#F0B292;}
+  .badge.lumpb{background:rgba(255,255,255,0.2);color:#FFE8B8;}
+
+  /* ===== FOOTER + BOTTOM ACTIONS ===== */
+  .footer-wrap {
+    max-width: 960px;
+    margin: 1.2rem auto 0;
+    padding: 0 20px;
+  }
+  .footer-wrap .footer-inner {
+    border-top: 1px solid var(--line);
+    padding-top: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+  }
+  .footer-wrap .footer-text {
+    font-size: 11px;
+    color: var(--ink-soft);
+    flex: 1;
+    min-width: 200px;
+  }
+  .footer-wrap .footer-text b {
+    color: var(--ink);
+  }
+  .footer-wrap .footer-text a {
+    color: var(--gold-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+  .footer-wrap .footer-text a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .bottom-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .bottom-actions .action-btn {
+    padding: 5px 12px;
+    border: 1.5px solid var(--gold);
+    border-radius: 20px;
+    background: var(--white);
+    color: var(--gold-deep);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    box-shadow: 0 1px 0 rgba(33,42,62,0.04);
+  }
+  .bottom-actions .action-btn .icon {
+    font-size: 14px;
+  }
+  .bottom-actions .action-btn:hover {
+    background: var(--gold);
+    color: var(--white);
+    border-color: var(--gold-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(184,134,47,0.15);
+  }
+  .bottom-actions .action-btn.home-btn {
+    border-color: var(--ink-soft);
+    color: var(--ink-soft);
+    background: transparent;
+    font-size: 14px;
+    padding: 4px 10px;
+  }
+  .bottom-actions .action-btn.home-btn:hover {
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+    transform: translateY(-1px);
+  }
+
+  /* ===== HERO ===== */
+  header.hero{padding:1.4rem 20px 1rem;text-align:center;
+    background:radial-gradient(circle at 15% 20%, rgba(184,134,47,0.08), transparent 45%),radial-gradient(circle at 85% 15%, rgba(63,122,92,0.08), transparent 40%);
+    border-bottom:1px solid var(--line);}
+  .eyebrow{font-family:'Spectral', serif;font-style:italic;font-size:11px;letter-spacing:0.06em;color:var(--gold-deep);margin:0 0 4px;}
+  h1{font-family:'Noto Serif Khmer', serif;font-weight:700;font-size:clamp(18px,3.2vw,28px);margin:0 0 4px;color:var(--ink);}
+  .hero-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--ink-soft);margin-bottom:6px;}
+  .hero-link a{font-weight:600;color:var(--gold-deep);text-decoration:none;border-bottom:1.5px solid var(--gold);}
+  .hero-link a:hover{color:var(--ink);border-color:var(--ink);}
+  .hero p.desc{max-width:600px;margin:0 auto;color:var(--ink-soft);font-size:12.5px;}
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(33,42,62,0.55);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal-box {
+    background: var(--white);
+    max-width: 540px;
+    width: 100%;
+    border-radius: var(--radius);
+    padding: 1.6rem 1.4rem;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 60px rgba(33,42,62,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .modal-box .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .modal-box .close-btn:hover {
+    background: var(--paper-deep);
+  }
+  .modal-box h3 {
+    font-family: 'Noto Serif Khmer', serif;
+    font-size: 16px;
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .modal-box .modal-sub {
+    color: var(--ink-soft);
+    font-size: 12px;
+    margin: 0 0 0.8rem;
+  }
+
+  /* Contribution rows inside modal */
+  .contrib-rows {
+    margin: 0.6rem 0;
+  }
+  .contrib-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 8px;
+    align-items: end;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .contrib-row:first-of-type {
+    padding-top: 0;
+  }
+  .contrib-row .field label {
+    display: block;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  .contrib-row .field .input-affix {
+    position: relative;
+  }
+  .contrib-row .field input {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1.5px solid var(--line);
+    border-radius: 6px;
+    font-family: 'Spectral', serif;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--paper);
+    transition: border-color .15s ease;
+  }
+  .contrib-row .field input:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .contrib-row .field .unit {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: var(--ink-soft);
+    pointer-events: none;
+  }
+  .contrib-remove-btn {
+    width: 28px;
+    height: 34px;
+    border: 1.5px solid var(--line);
+    background: var(--white);
+    border-radius: 6px;
+    color: var(--clay);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s ease;
+    margin-bottom: 1px;
+  }
+  .contrib-remove-btn:hover {
+    background: var(--clay-soft);
+  }
+  .contrib-remove-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+  .contrib-add-btn {
+    margin-top: 6px;
+    width: 100%;
+    padding: 5px;
+    border: 1.5px dashed var(--gold);
+    background: transparent;
+    border-radius: 6px;
+    color: var(--gold-deep);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .contrib-add-btn:hover {
+    background: rgba(184,134,47,0.08);
+  }
+
+  .modal-box .calc-result {
+    background: var(--ink);
+    color: var(--white);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin: 0.8rem 0 0.4rem;
+  }
+  .modal-box .calc-result .label {
+    font-size: 10.5px;
+    color: #C9CFE0;
+    margin: 0 0 2px;
+  }
+  .modal-box .calc-result .amount {
+    font-family: 'Spectral', serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .modal-box .calc-result .note {
+    font-size: 10.5px;
+    color: #A9B0C4;
+    margin: 3px 0 0;
+  }
+
+  .modal-box .info-note {
+    font-size: 11px;
+    color: var(--ink-soft);
+    padding: 8px 10px;
+    background: var(--paper-deep);
+    border-radius: 6px;
+    margin: 0.6rem 0 0;
+  }
+  .modal-box .info-note b {
+    color: var(--ink);
+  }
+  .modal-box .info-note .highlight {
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .modal-box .info-note .scenario {
+    display: block;
+    padding: 3px 0 3px 12px;
+    border-left: 2px solid var(--gold);
+    margin: 3px 0;
+    font-size: 10.5px;
+  }
+
+  .modal-box .app-steps {
+    margin: 0.4rem 0 0;
+    padding-left: 18px;
+    font-size: 12px;
+  }
+  .modal-box .app-steps li {
+    margin-bottom: 4px;
+  }
+  .modal-box .app-steps li b {
+    color: var(--gold-deep);
+  }
+  .modal-box .app-steps ul {
+    margin: 2px 0 0 12px;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  .goto-tab1-btn {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 14px;
+    background: var(--gold);
+    color: var(--white);
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .goto-tab1-btn:hover {
+    background: var(--gold-deep);
+  }
+
+  @media (max-width:600px){
+    .period-row{grid-template-columns:1fr 1fr;}
+    .remove-btn{grid-column:1/-1;width:100%;}
+    .result-grid{grid-template-columns:1fr;}
+    .tabs-inner{flex-wrap:nowrap;gap:3px;}
+    .tab-btn{min-width:70px;padding:6px 4px;font-size:10px;}
+    .tab-btn .num{font-size:12px;}
+    .tab-btn .label{font-size:9px;}
+    .tabs-sticky-wrapper{padding:6px 6px 4px 6px;}
+    .footer-wrap .footer-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+    }
+    .bottom-actions {
+      justify-content: center;
+    }
+    .bottom-actions .action-btn {
+      font-size: 10px;
+      padding: 4px 10px;
+    }
+    .modal-box {
+      padding: 1.2rem 1rem;
+    }
+    .contrib-row {
+      grid-template-columns: 1fr 1fr;
+    }
+    .contrib-remove-btn {
+      grid-column: 1/-1;
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">NSSF Pension Estimator</p>
+    <h1>ប្រាក់សោធនក្រោមបេឡាជាតិសន្តិសុខសង្គម</h1>
+    <p class="hero-link">សម្រាប់បុគ្គលិកក្រុមហ៊ុនឯកជន &nbsp;·&nbsp; <a href="https://www.nssf.gov.kh/" target="_blank" rel="noopener">nssf.gov.kh</a></p>
+    <p class="desc">ជ្រើសរើសប្រភេទសោធនខាងក្រោម ដើម្បីស្វែងយល់ពីលក្ខខណ្ឌ ឬគណនាចំនួនប្រាក់សោធនប្រចាំខែប៉ាន់ស្មានរបស់អ្នក។</p>
+  </div>
+</header>
+
+<!-- ===== STICKY TABS ===== -->
+<div class="tabs-sticky-wrapper">
+  <div class="tabs-inner" role="tablist">
+    <button class="tab-btn active" data-tab="1" onclick="switchTab(1)">
+      <span class="num">១</span>
+      <span class="label">សោធនជរាភាព</span>
+    </button>
+    <button class="tab-btn" data-tab="2" onclick="switchTab(2)">
+      <span class="num">២</span>
+      <span class="label">សោធនទុព្វលភាព</span>
+    </button>
+    <button class="tab-btn" data-tab="3" onclick="switchTab(3)">
+      <span class="num">៣</span>
+      <span class="label">សោធនកាលាទិករណ៍</span>
+    </button>
+    <button class="tab-btn" data-tab="4" onclick="switchTab(4)">
+      <span class="num">៤</span>
+      <span class="label">សោធនអ្នកនៅក្នុងបន្ទុក</span>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- TAB 1: OLD-AGE PENSION -->
+  <div class="tab-panel active" id="panel-1">
+    <div class="card">
+      <h2>១. សោធនជរាភាព</h2>
+
+      <div class="interim-card">
+        <span class="tag">បទប្បញ្ញត្តិអន្តរកាល</span>
+        <h4>ការបូកបន្ថែម ១៥ឆ្នាំ</h4>
+        <p class="expl">ដោយសារ ប.ស.ស. ចាប់ផ្តើមតាំងពីខែកក្កដា ២០២២ រដ្ឋាភិបាលបានផ្តល់ <b>"បទប្បញ្ញត្តិអន្តរកាល"</b> បូក ១៥ឆ្នាំ ប៉ុន្តែកំណត់ចំពោះអ្នកដែល៖</p>
+        <ul>
+          <li>ចុះបញ្ជីក្នុងផ្នែកប្រាក់សោធន ចន្លោះ <b>០១/កក្កដា/២០២២</b> ដល់ <b>៣០/មិថុនា/២០២៣</b></li>
+          <li>កើតចន្លោះ <b>ខែកក្កដា ១៩៦៣</b> ដល់ <b>ខែមិថុនា ១៩៧៧</b></li>
+          <li>បើមិនត្រូវលក្ខខណ្ឌ → គណនាតាមអតីតភាពពិតប្រាកដ (បើ<១៥ឆ្នាំ → វិភាជន៍)</li>
+        </ul>
+        <p class="expl" style="margin-top:6px;"><b>រូបមន្តគណនា៖</b> ប្រាក់ឈ្នួលមធ្យមប្រចាំខែជាប់ដំបូលត្រឹម <b>1,200,000៛</b> · អត្រាគុណកើនប្រចាំឆ្នាំ = <b>1.75%</b> សម្រាប់ ១៥ឆ្នាំដំបូង រួចបន្ទាប់ពីឆ្នាំទី១៦ទៅ អត្រាថយចុះមកត្រឹម <b>1%</b> ក្នុងមួយឆ្នាំបន្ថែម (តាមលក្ខខណ្ឌដែលកំណត់ក្នុងអនុក្រឹត្យលេខ៣២)</p>
+      </div>
+
+      <div class="currency-toggle" role="group" aria-label="ជ្រើសរើសរូបិយប័ណ្ណ">
+        <button type="button" class="active" data-cur="khr" onclick="setCurrency('khr')">រៀល (៛)</button>
+        <button type="button" data-cur="usd" onclick="setCurrency('usd')">ដុល្លារ ($)</button>
+      </div>
+
+      <div id="rows"></div>
+
+      <button type="button" class="add-row-btn" onclick="addRow()">+ បន្ថែមរយៈពេលប្រាក់ឈ្នួលថ្មី</button>
+
+      <div class="path-select" style="margin-top:1rem;">
+        <label class="grouplabel">ជ្រើសរើសលក្ខខណ្ឌដែលត្រូវនឹងករណីរបស់អ្នក</label>
+        <label class="radio-option checked" id="opt-interim">
+          <input type="radio" name="path" value="interim" checked onchange="onPathChange()">
+          <span class="opt-text"><b>ត្រូវលក្ខខណ្ឌបទប្បញ្ញត្តិអន្តរកាល</b><span>ចុះបញ្ជី + អាយុ≥៦០ឆ្នាំ + បង់≥១២ខែ · បូក ១៥ឆ្នាំ</span></span>
+        </label>
+        <label class="radio-option" id="opt-full180">
+          <input type="radio" name="path" value="full180" onchange="onPathChange()">
+          <span class="opt-text"><b>បង់ភាគទានគ្រប់ ១៨០ខែ (១៥ឆ្នាំ) ឡើងទៅ</b><span>ចុះបញ្ជី + អាយុ≥៦០ឆ្នាំ + បង់≥១៨០ខែ · គណនាត្រង់</span></span>
+        </label>
+        <label class="radio-option" id="opt-neither">
+          <input type="radio" name="path" value="neither" onchange="onPathChange()">
+          <span class="opt-text"><b>មិនត្រូវលក្ខខណ្ឌទាំងពីរខាងលើ</b><span>គ្មានសោធនប្រចាំខែ — ទទួលវិភាជន៍ (ប្រាក់តែម្តង) បូក CPI</span></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="timeline-block">
+      <h3>តំបន់គណនា</h3>
+      <p class="sub" id="timelineSub">អតីតភាព ១-១៥ឆ្នាំដំបូង ទទួលការបូក +១៥ឆ្នាំ (ដំណាក់កាលផ្លាស់ប្តូរ)</p>
+      <div class="timeline">
+        <div class="zone zone-bonus"><span class="zone-label">+១៥ឆ្នាំ</span></div>
+        <div class="zone zone-standard"><span class="zone-label">គណនាត្រង់</span></div>
+        <div class="marker" id="marker" data-label="0ឆ្នាំ" style="left:0%"></div>
+      </div>
+      <div class="timeline-scale"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25</span><span>30ឆ្នាំ</span></div>
+    </div>
+
+    <!-- MONTHLY PENSION RESULT -->
+    <div class="result" id="resultMonthly">
+      <p class="label">ប្រាក់សោធនប្រចាំខែប៉ាន់ស្មាន</p>
+      <p class="amount"><span class="cur" id="amountCur">៛</span><span id="amountMain">0</span></p>
+      <p class="secondary" id="amountSecondary">≈ $0.00 / ខែ</p>
+      <span class="badge bonus" id="phaseBadge">តំបន់រង្វាន់ — បូក ១៥ឆ្នាំ</span>
+      <div class="result-grid">
+        <div class="stat"><p class="k">សរុបខែបានបង់</p><p class="v" id="statMonths">0 ខែ</p></div>
+        <div class="stat"><p class="k">អតីតភាពប្រើគណនា</p><p class="v" id="statEffective">0.0 ឆ្នាំ</p></div>
+        <div class="stat"><p class="k">ប្រាក់ឈ្នួលមធ្យម</p><p class="v" id="statAvgWage">0៛</p></div>
+      </div>
+    </div>
+
+    <!-- LUMP SUM RESULT -->
+    <div class="result lump" id="resultLump" style="display:none;">
+      <p class="label" id="lumpLabel">វិភាជន៍ជរាភាព (ប្រាក់តែម្តង បូក CPI)</p>
+      <p class="amount"><span class="cur" id="lumpCur">៛</span><span id="lumpMain">0</span></p>
+      <p class="secondary" id="lumpSecondary">≈ $0.00</p>
+      <span class="badge lumpb">ប្រាក់សោធនប្រចាំខែ = 0៛</span>
+      <div class="result-grid">
+        <div class="stat"><p class="k">សរុបខែបានបង់</p><p class="v" id="lumpStatMonths">0 ខែ</p></div>
+        <div class="stat"><p class="k">ភាគទានដើម (៤%)</p><p class="v" id="lumpStatContrib">0៛</p></div>
+        <div class="stat"><p class="k">បន្ថែម CPI</p><p class="v" id="lumpStatCpiAdd">0៛ (+0%)</p></div>
+      </div>
+      <p style="font-size:10px;color:#F0E4CC;margin-top:8px;margin-bottom:0;">* គណនាតាម CPI មធ្យម ២.៥%/ឆ្នាំ — សម្រាប់ប៉ាន់ស្មានប៉ុណ្ណោះ</p>
+    </div>
+
+    <div class="death-box">
+      <span class="tag">ករណីមរណភាព</span>
+      <p style="margin:0 0 3px;font-size:11.5px;">ប្រសិនបើនិវត្តជនកំពុងទទួលសោធនជរាភាព ទទួលមរណភាព៖ (១) <b>វិភាជន៍បូជាសព</b> = ៥ខែចុងក្រោយ (ប្រាក់តែម្តង) (២) ផ្ទេរទៅ <b>សោធនអ្នកនៅក្នុងបន្ទុក</b> (ទំព័រទី៤)</p>
+      <p style="margin:0;font-size:11px;" id="deathBenefitLine"><b>តាមប្រាក់សោធនខាងលើ៖</b> វិភាជន៍បូជាសព ≈ <span id="deathBenefitAmt">0៛</span> (៥ខែ × <span id="deathBenefitMonthly">0៛</span>)</p>
+    </div>
+  </div>
+
+  <!-- TAB 2: INVALIDITY PENSION -->
+  <div class="tab-panel" id="panel-2">
+    <div class="card">
+      <h2>២. សោធនទុព្វលភាព</h2>
+      <p class="sub">ផ្តល់ជូនប្រចាំខែដល់សមាជិកដែលមិនអាចបន្តធ្វើការវិញបានទៀត មុនអាយុ ៦០ឆ្នាំ</p>
+      <ul class="info-list">
+        <li><b>លក្ខខណ្ឌ៖</b> ត្រូវបានធ្វើរោគវិនិច្ឆ័យ និងបញ្ជាក់ដោយក្រុមប្រឹក្សាវេជ្ជសាស្ត្រ ប.ស.ស. ថាបាត់បង់សមត្ថភាពការងារយ៉ាងហោចណាស់ ២/៣</li>
+        <li><b>លក្ខខណ្ឌភាគទាន៖</b> ត្រូវបានចុះបញ្ជីក្នុងផ្នែកប្រាក់សោធន និងបានបង់ភាគទានតាមចំនួនកំណត់</li>
+        <li><b>រយៈពេលទទួល៖</b> បន្តរហូតដល់អាយុ៦០ឆ្នាំ បន្ទាប់មកផ្ទេរទៅជាសោធនជរាភាព</li>
+      </ul>
+      <div class="note-box"><b>ចំណាំ៖</b> រូបមន្តគណនាចំនួនប្រាក់ជាក់លាក់អាស្រ័យលើកម្រិតបាត់បង់សមត្ថភាព — សូមទាក់ទង ប.ស.ស. ដើម្បីវាយតម្លៃករណីរបស់អ្នក។</div>
+      <div class="death-box">
+        <span class="tag">ករណីមរណភាព</span>
+        <p style="margin:0;font-size:11.5px;">ប្រសិនបើសោធនិកទុព្វលភាព ទទួលមរណភាព៖ វិភាជន៍បូជាសព (៥ខែចុងក្រោយ) និងផ្ទេរទៅសោធនអ្នកនៅក្នុងបន្ទុក។</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: SURVIVOR PENSION -->
+  <div class="tab-panel" id="panel-3">
+    <div class="card">
+      <h2>៣. សោធនកាលាទិករណ៍</h2>
+      <p class="sub">ផ្តល់ជូនអ្នកសិទ្ធិវន្ត ពេលសមាជិកសកម្ម (មិនទាន់ចូលនិវត្តន៍) ទទួលមរណភាព</p>
+      <ul class="info-list">
+        <li><b>លក្ខខណ្ឌ៖</b> សមាជិកបានបំពេញលក្ខខណ្ឌសោធនជរាភាព ឬទុព្វលភាព ឬបង់ភាគទានយ៉ាងតិច <b>១៨០ខែ</b></li>
+        <li><b>អ្នកសិទ្ធិវន្ត៖</b> សហព័ទ្ធ ៥០% + កូនក្នុងបន្ទុក ៥០% · បើមានតែមួយប្រភេទ ទទួល ១០០%</li>
+        <li><b>កាលកំណត់៖</b> ត្រូវដាក់ពាក្យក្នុងរយៈពេល ៣ខែ បន្ទាប់ពីថ្ងៃមរណភាព</li>
+      </ul>
+      <div class="note-box"><b>ករណីមិនគ្រប់លក្ខខណ្ឌ៖</b> អ្នកសិទ្ធិវន្តទទួល <b>វិភាជន៍ចំពោះអ្នកនៅក្នុងបន្ទុក</b> (ប្រាក់តែម្តង) ជំនួសវិញ</div>
+    </div>
+
+    <div class="card">
+      <h2>គណនាចំនួនប្រាក់ជាក់ស្តែង</h2>
+      <p class="sub">បញ្ចូលប្រាក់សោធនគោលរបស់សាមីជនដែលទទួលមរណភាព</p>
+
+      <div class="field" style="max-width:280px;margin-bottom:0.6rem;">
+        <label>ប្រាក់សោធនគោលប្រចាំខែ</label>
+        <div class="input-affix">
+          <input type="text" inputmode="decimal" id="survivorBase" placeholder="500,000" oninput="liveFormat(this);calcSurvivor()">
+          <span class="unit">៛/ខែ</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:0.8rem;">
+        <button type="button" class="add-row-btn" style="margin-top:0;width:auto;flex:1;min-width:140px;padding:4px 12px;font-size:11px;" onclick="copyFromTab1('survivorBase')">↺ ប្រើពីទំព័រទី១</button>
+        <a href="#panel-1" onclick="switchTab(1);return false;" style="font-size:11.5px;font-weight:600;color:var(--gold-deep);text-decoration:none;border-bottom:1.5px solid var(--gold);white-space:nowrap;">→ ទំព័រទី១</a>
+      </div>
+
+      <div class="path-select">
+        <label class="grouplabel">អ្នកសិទ្ធិវន្តដែលមានស្រាប់</label>
+        <label class="radio-option checked" id="opt-surv-both">
+          <input type="radio" name="survComposition" value="both" checked onchange="onSurvCompChange()">
+          <span class="opt-text"><b>សហព័ទ្ធ + កូនក្នុងបន្ទុក</b><span>សហព័ទ្ធ ៥០% · កូន ៥០%</span></span>
+        </label>
+        <label class="radio-option" id="opt-surv-spouse">
+          <input type="radio" name="survComposition" value="spouse" onchange="onSurvCompChange()">
+          <span class="opt-text"><b>សហព័ទ្ធ (ប្តី/ប្រពន្ធ) តែម្នាក់</b><span>សហព័ទ្ធទទួល ១០០%</span></span>
+        </label>
+        <label class="radio-option" id="opt-surv-children">
+          <input type="radio" name="survComposition" value="children" onchange="onSurvCompChange()">
+          <span class="opt-text"><b>កូនក្នុងបន្ទុកតែម្នាក់</b><span>កូនទទួល ១០០%</span></span>
+        </label>
+      </div>
+
+      <div class="result" style="margin-top:1rem;">
+        <p class="label">សរុបសោធនកាលាទិករណ៍ប្រចាំខែ</p>
+        <p class="amount"><span class="cur">៛</span><span id="survTotal">0</span></p>
+        <p class="secondary" id="survTotalUsd">≈ $0.00 / ខែ</p>
+        <div class="result-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="stat"><p class="k">សហព័ទ្ធ</p><p class="v" id="survSpouseAmt">0៛ / ខែ</p></div>
+          <div class="stat"><p class="k">កូនក្នុងបន្ទុក (សរុប)</p><p class="v" id="survChildrenAmt">0៛ / ខែ</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: DEPENDENTS PENSION -->
+  <div class="tab-panel" id="panel-4">
+    <div class="card">
+      <h2>៤. សោធនចំពោះអ្នកនៅក្នុងបន្ទុក</h2>
+      <p class="sub">ផ្តល់ជូនអ្នកសិទ្ធិវន្តរបស់និវត្តជនដែលកំពុងទទួលសោធនរួចហើយ ក្នុងករណីទទួលមរណភាព</p>
+      <ul class="info-list">
+        <li><b>លក្ខខណ្ឌ៖</b> សាមីជនកំពុងទទួលសោធនជរាភាព ទុព្វលភាព ឬកាលាទិករណ៍ ហើយទទួលមរណភាព</li>
+        <li><b>ភាគរយទទួល៖</b> សហព័ទ្ធ និងកូនក្នុងបន្ទុក ទទួលសរុបប្រមាណ <b>៤៥%</b> នៃប្រាក់សោធនចុងក្រោយ</li>
+        <li><b>រយៈពេលទទួល៖</b> បន្តរហូតដល់លក្ខខណ្ឌផ្លាស់ប្តូរ (កូនពេញវ័យ ឬសហព័ទ្ធអាពាហ៍ពិពាហ៍ថ្មី)</li>
+      </ul>
+      <div class="note-box"><b>ចំណាំ៖</b> ភាគរយពិតប្រាកដអាចប្រែប្រួលបន្តិច សូមផ្ទៀងផ្ទាត់ជាមួយ ប.ស.ស.។</div>
+    </div>
+
+    <div class="card">
+      <h2>គណនាចំនួនប្រាក់ជាក់ស្តែង</h2>
+      <p class="sub">បញ្ចូលប្រាក់សោធនចុងក្រោយរបស់និវត្តជន</p>
+
+      <div class="field" style="max-width:280px;margin-bottom:0.6rem;">
+        <label>ប្រាក់សោធនចុងក្រោយប្រចាំខែ</label>
+        <div class="input-affix">
+          <input type="text" inputmode="decimal" id="dependentBase" placeholder="500,000" oninput="liveFormat(this);calcDependent()">
+          <span class="unit">៛/ខែ</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:0.8rem;">
+        <button type="button" class="add-row-btn" style="margin-top:0;width:auto;flex:1;min-width:140px;padding:4px 12px;font-size:11px;" onclick="copyFromTab1('dependentBase')">↺ ប្រើពីទំព័រទី១</button>
+        <a href="#panel-1" onclick="switchTab(1);return false;" style="font-size:11.5px;font-weight:600;color:var(--gold-deep);text-decoration:none;border-bottom:1.5px solid var(--gold);white-space:nowrap;">→ ទំព័រទី១</a>
+      </div>
+
+      <div class="result">
+        <p class="label" id="depTotalLabel">សរុបសោធនអ្នកនៅក្នុងបន្ទុក (≈៤៥%)</p>
+        <p class="amount"><span class="cur">៛</span><span id="depTotal">0</span></p>
+        <p class="secondary" id="depTotalUsd">≈ $0.00 / ខែ</p>
+        <p style="font-size:10px;color:#C9CFE0;margin-top:8px;margin-bottom:0;">* ចំនួនសរុបបែងចែករវាងអ្នកសិទ្ធិវន្តទាំងអស់</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER + BOTTOM ACTIONS (merged) ===== -->
+<div class="footer-wrap">
+  <div class="footer-inner">
+    <div class="footer-text">
+      <b>ចំណាំ៖</b> ព័ត៌មាននិងរូបមន្តគណនាផ្អែកលើអនុក្រឹត្យលេខ៣២ និងសេចក្តីថ្លែងការណ៍របស់ ប.ស.ស. — លទ្ធផលសម្រាប់ប៉ាន់ស្មានប៉ុណ្ណោះ។ សម្រាប់ព័ត៌មានផ្លូវការ សូមចូលមើល <a href="https://www.nssf.gov.kh/" target="_blank" rel="noopener">nssf.gov.kh</a> ឬទាក់ទង ១២៨៦ / ១២៩៧។
+    </div>
+    <div class="bottom-actions">
+      <button class="action-btn" onclick="openContributionModal()">
+        <span class="icon">🧮</span> គណនា ៤%
+      </button>
+      <button class="action-btn" onclick="openAppGuideModal()">
+        <span class="icon">📱</span> NSSF App
+      </button>
+      <button class="action-btn home-btn" onclick="goHome()" title="ត្រឡប់ទៅកំពូល">
+        <span class="icon">⬆</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL: Contribution Calculator (with multiple rows) ===== -->
+<div class="modal-overlay" id="contributionModal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('contributionModal')">&times;</button>
+    <h3>🧮 គណនាចំនួនបង់ភាគទាន ៤% (សរុប)</h3>
+    <p class="modal-sub">បញ្ចូលប្រាក់ឈ្នួល និងចំនួនខែនីមួយៗ ដើម្បីគណនាចំនួនភាគទានសរុបដែលបានបង់ (៤% នៃប្រាក់ឈ្នួលនីមួយៗ) · <b>ចំណាំ៖</b> ប្រាក់ឈ្នួលជាប់ភាគទានកំណត់ត្រឹមដំបូល <b>1,200,000៛</b> ក្នុងមួយខែ — ប្រសិនបើឈ្នួលពិតលើសពីនេះ ប្រព័ន្ធនឹងគណនាត្រឹមតែ 1,200,000៛ ប៉ុណ្ណោះ</p>
+
+    <div class="contrib-rows" id="contribRows">
+      <!-- Rows will be added here -->
+    </div>
+
+    <button class="contrib-add-btn" onclick="addContribRow()">+ បន្ថែមជួរថ្មី</button>
+
+    <div class="calc-result" id="contribResult">
+      <p class="label">ចំនួនភាគទានសរុប (៤% × ប្រាក់ឈ្នួល × ខែ)</p>
+      <p class="amount" id="contribTotal">0៛</p>
+      <p class="note" id="contribNote">ផ្អែកលើទិន្នន័យដែលបានបញ្ចូល</p>
+    </div>
+
+    <div class="info-note">
+      <b>📌 ការកើនឡើងនៃចំនួនប្រាក់សោធន៖</b>
+      <span class="scenario">✅ <span class="highlight">បទប្បញ្ញត្តិអន្តរកាល</span> — បូកបន្ថែម ១៥ឆ្នាំលើអតីតភាពពិតប្រាកដ (សម្រាប់អ្នកដែលចុះបញ្ជីក្នុងឆ្នាំដំបូង និងមានអាយុកំណត់)</span>
+      <span class="scenario">✅ <span class="highlight">បង់ភាគទានគ្រប់ ១៨០ខែ (១៥ឆ្នាំ)</span> — ទទួលបានសិទ្ធិសោធនប្រចាំខែពេញលេញ ដោយគ្មានការបូកបន្ថែម (គណនាត្រង់)</span>
+      <span class="scenario">✅ <span class="highlight">វិភាជន៍ (ប្រាក់តែម្តង)</span> — សម្រាប់អ្នកដែលមិនគ្រប់លក្ខខណ្ឌខាងលើ ទទួលបានប្រាក់សរុបបូកបន្ថែម CPI ជាមធ្យម ២.៥%/ឆ្នាំ</span>
+      <span class="scenario">⚠️ <span class="highlight">អត្រាគុណកើនប្រចាំឆ្នាំ</span> — ១.៧៥%/ឆ្នាំ សម្រាប់ ១៥ឆ្នាំដំបូងនៃអតីតភាពដែលប្រើគណនា រួចបន្ទាប់ពីឆ្នាំទី១៦ទៅ អត្រាថយចុះមកត្រឹម ១%/ឆ្នាំ (អនុវត្តតែលើឆ្នាំដែលលើសពី ១៥ប៉ុណ្ណោះ)</span>
+      <span style="display:block;margin-top:4px;font-size:10.5px;color:var(--gold-deep);">
+        👉 សូមចូលទៅកាន់ <b>"ទំព័រទី១ (សោធនជរាភាព)"</b> ដើម្បីគណនាប្រាក់សោធនប្រចាំខែ ឬវិភាជន៍ជាក់ស្តែងរបស់អ្នក។
+      </span>
+      <button class="goto-tab1-btn" onclick="closeModal('contributionModal'); switchTab(1);">→ ចូលទៅទំព័រទី១</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL: NSSF App Guide ===== -->
+<div class="modal-overlay" id="appGuideModal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('appGuideModal')">&times;</button>
+    <h3>📱 កម្មវិធីទូរស័ព្ទដៃ ប.ស.ស. (NSSF Member App)</h3>
+    <p class="modal-sub">កម្មវិធីផ្លូវការរបស់បេឡាជាតិសន្តិសុខសង្គម សម្រាប់ពិនិត្យព័ត៌មានសមាជិកភាព — ដាក់ឱ្យប្រើប្រាស់ជាផ្លូវការ ០១ សីហា ២០២៤</p>
+
+    <ol class="app-steps">
+      <li><b>ទាញយកកម្មវិធី</b> — ស្វែងរក "NSSF Member" នៅលើ App Store (iOS) ឬ Google Play (Android) រួចទាញយកមកដំឡើង</li>
+      <li><b>ចូលប្រើប្រាស់</b> — ចូលដោយប្រើលេខអត្តសញ្ញាណប័ណ្ណ ប.ស.ស. របស់លោកអ្នក</li>
+      <li><b>មុខងារសំខាន់ៗ</b> — កម្មវិធីនេះអនុញ្ញាតឱ្យអ្នកប្រើប្រាស់៖
+        <ul>
+          <li>ពិនិត្យព័ត៌មានផ្ទាល់ខ្លួន និងធ្វើបច្ចុប្បន្នភាព</li>
+          <li>ពិនិត្យប្រវត្តិការបង់ភាគទាន (ប្រាក់ឈ្នួល/ខែ)</li>
+          <li>មើលរបាយការណ៍ចូលប្រើប្រាស់សេវានៅមូលដ្ឋានសុខាភិបាលដៃគូ</li>
+          <li>ស្នើសុំទូទាត់តាវកាលិក (ប្រាក់សោធន/វិភាជន៍) ដោយផ្ទាល់តាមកម្មវិធី</li>
+          <li>ស្នើសុំចុះឈ្មោះបុគ្គលស្វ័យនិយោជន៍ និងអ្នកក្នុងបន្ទុកចូលជាសមាជិកថ្មី</li>
+          <li>ស្វែងរកទីតាំងការិយាល័យ ប.ស.ស. សាខា និងមូលដ្ឋានសុខាភិបាលនៅជិត</li>
+        </ul>
+      </li>
+      <li><b>ទាក់ទង ប.ស.ស.</b> — ប្រសិនបើមានបញ្ហា សូមទាក់ទងបេឡាជាតិសន្តិសុខសង្គមតាមរយៈលេខទូរស័ព្ទ <b>១២៨៦</b> ឬ <b>១២៩៧</b></li>
+    </ol>
+
+    <div class="info-note" style="margin-top:0.8rem;">
+      <b>ℹ️ ចំណាំ៖</b> ជំហានលម្អិត និងចំណុចប្រទាក់ (UI) ក្នុងកម្មវិធីអាចប្រែប្រួលបន្តិចបន្តួចទៅតាមកំណែកម្មវិធីចុងក្រោយ។ ប.ស.ស. កំពុងបន្ថែមមុខងារថ្មីៗជាបន្តបន្ទាប់ (ថ្លែងជាសាធារណៈ សីហា ២០២៥)។ សម្រាប់ព័ត៌មានចុងក្រោយបំផុត សូមចូលមើល <a href="https://www.nssf.gov.kh/" target="_blank" rel="noopener">nssf.gov.kh</a>។
+    </div>
+  </div>
+</div>
+
+<script>
+const EXCHANGE_RATE = 4026;
+const WAGE_CEILING_KHR = 1200000;
+const CPI_RATE = 0.025;
+let currency = 'khr';
+let rowCount = 0;
+let lastMonthlyPensionKhr = 0;
+let contribRowCounter = 0;
+
+// ===== NUMBER FORMATTING (thousand separators) =====
+function parseNum(val){
+  if(val === null || val === undefined) return 0;
+  const cleaned = String(val).replace(/,/g, '').trim();
+  const n = parseFloat(cleaned);
+  return isNaN(n) ? 0 : n;
+}
+function liveFormat(input){
+  const cursorFromEnd = input.value.length - input.selectionStart;
+  let raw = input.value.replace(/[^0-9.]/g, '');
+  // keep only first decimal point
+  const firstDot = raw.indexOf('.');
+  if(firstDot !== -1){
+    raw = raw.slice(0, firstDot+1) + raw.slice(firstDot+1).replace(/\./g, '');
+  }
+  if(raw === ''){ input.value = ''; return; }
+  let [intPart, decPart] = raw.split('.');
+  intPart = intPart.replace(/^0+(?=\d)/, '');
+  const formattedInt = intPart === '' ? '0' : parseInt(intPart, 10).toLocaleString('en-US');
+  input.value = decPart !== undefined ? `${formattedInt}.${decPart}` : formattedInt;
+  const newPos = Math.max(0, input.value.length - cursorFromEnd);
+  input.setSelectionRange(newPos, newPos);
+}
+
+// ===== TAB SWITCHING =====
+function switchTab(n){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.tab) === n));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active', p.id === 'panel-' + n));
+  closeModal('contributionModal');
+  closeModal('appGuideModal');
+}
+
+// ===== MODAL CONTROLS =====
+function openContributionModal(){
+  document.getElementById('contributionModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  // If no rows exist, add a default one
+  if(document.querySelectorAll('.contrib-row').length === 0){
+    addContribRow();
+  }
+  calcContribTotal();
+}
+function openAppGuideModal(){
+  document.getElementById('appGuideModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.modal-overlay').forEach(el => {
+  el.addEventListener('click', function(e) {
+    if(e.target === this) {
+      this.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+});
+
+// ===== CONTRIBUTION ROWS (inside modal) =====
+function createContribRow(id){
+  const div = document.createElement('div');
+  div.className = 'contrib-row';
+  div.dataset.id = id;
+  div.innerHTML = `
+    <div class="field">
+      <label>ប្រាក់ឈ្នួល/ខែ</label>
+      <div class="input-affix">
+        <input type="text" inputmode="decimal" class="contrib-wage" placeholder="800,000" oninput="liveFormat(this);calcContribTotal()">
+        <span class="unit">៛</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>ចំនួនខែ</label>
+      <div class="input-affix">
+        <input type="text" inputmode="decimal" class="contrib-months" placeholder="12" oninput="liveFormat(this);calcContribTotal()">
+        <span class="unit">ខែ</span>
+      </div>
+    </div>
+    <button type="button" class="contrib-remove-btn" onclick="removeContribRow(${id})" title="លុប">×</button>
+  `;
+  return div;
+}
+
+function addContribRow(){
+  contribRowCounter++;
+  document.getElementById('contribRows').appendChild(createContribRow(contribRowCounter));
+  updateContribRemoveButtons();
+  calcContribTotal();
+}
+
+function removeContribRow(id){
+  const rows = document.querySelectorAll('.contrib-row');
+  if(rows.length <= 1) return;
+  const el = document.querySelector(`.contrib-row[data-id="${id}"]`);
+  if(el) el.remove();
+  updateContribRemoveButtons();
+  calcContribTotal();
+}
+
+function updateContribRemoveButtons(){
+  const rows = document.querySelectorAll('.contrib-row');
+  rows.forEach(r => {
+    const btn = r.querySelector('.contrib-remove-btn');
+    if(btn) btn.disabled = rows.length <= 1;
+  });
+}
+
+function calcContribTotal(){
+  const rows = document.querySelectorAll('.contrib-row');
+  let totalContrib = 0;
+  let totalMonths = 0;
+  let details = [];
+
+  rows.forEach(r => {
+    const wageRaw = Math.max(0, parseNum(r.querySelector('.contrib-wage').value));
+    const months = Math.max(0, parseNum(r.querySelector('.contrib-months').value));
+    const capped = Math.min(wageRaw, WAGE_CEILING_KHR);
+    const contrib = capped * 0.04 * months;
+    totalContrib += contrib;
+    totalMonths += months;
+    if(months > 0 && wageRaw > 0){
+      details.push(`${Math.round(capped).toLocaleString()}៛ × ${months}ខែ`);
+    }
+  });
+
+  document.getElementById('contribTotal').textContent = `${Math.round(totalContrib).toLocaleString()}៛`;
+  document.getElementById('contribNote').textContent = details.length > 0 
+    ? `ផ្អែកលើ៖ ${details.join('; ')} (សរុប ${totalMonths} ខែ)` 
+    : 'សូមបញ្ចូលប្រាក់ឈ្នួល និងចំនួនខែ';
+}
+
+// ===== GO HOME =====
+function goHome(){
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  switchTab(1);
+}
+
+// ===== PENSION CALCULATOR FUNCTIONS =====
+function fmt(n, decimals=0){ return Math.round(n*Math.pow(10,decimals))/Math.pow(10,decimals); }
+function groupSep(n){ return n.toLocaleString('en-US'); }
+
+function createRowEl(id){
+  const div = document.createElement('div');
+  div.className = 'period-row';
+  div.dataset.id = id;
+  div.innerHTML = `
+    <div class="field">
+      <label>ប្រាក់ឈ្នួល/ខែ</label>
+      <div class="input-affix">
+        <input type="text" inputmode="decimal" class="wage-input" placeholder="${currency==='khr' ? '800,000' : '200'}" oninput="liveFormat(this);calculate()">
+        <span class="unit cur-unit">${currency==='khr' ? '៛' : '$'}</span>
+      </div>
+    </div>
+    <div class="field">
+      <label>ចំនួនខែ</label>
+      <div class="input-affix">
+        <input type="text" inputmode="decimal" class="months-input" placeholder="12" oninput="liveFormat(this);calculate()">
+        <span class="unit">ខែ</span>
+      </div>
+    </div>
+    <button type="button" class="remove-btn" onclick="removeRow(${id})" title="លុប">×</button>
+  `;
+  return div;
+}
+
+function addRow(){
+  rowCount++;
+  document.getElementById('rows').appendChild(createRowEl(rowCount));
+  updateRemoveButtons();
+  calculate();
+}
+function removeRow(id){
+  const el = document.querySelector(`.period-row[data-id="${id}"]`);
+  if(el) el.remove();
+  updateRemoveButtons();
+  calculate();
+}
+function updateRemoveButtons(){
+  const rows = document.querySelectorAll('.period-row');
+  rows.forEach(r => r.querySelector('.remove-btn').disabled = rows.length <= 1);
+}
+function setCurrency(cur){
+  if(cur === currency) return;
+  const oldCurrency = currency;
+  document.querySelectorAll('.wage-input').forEach(inp=>{
+    const val = parseNum(inp.value);
+    if(inp.value.trim() !== ''){
+      const converted = oldCurrency === 'khr' ? val / EXCHANGE_RATE : val * EXCHANGE_RATE;
+      inp.value = cur === 'khr' ? fmt(converted, 0).toLocaleString('en-US') : fmt(converted, 2).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    }
+  });
+  currency = cur;
+  document.querySelectorAll('.currency-toggle button').forEach(b=>b.classList.toggle('active', b.dataset.cur === cur));
+  document.querySelectorAll('.cur-unit').forEach(u=>u.textContent = cur === 'khr' ? '៛' : '$');
+  document.querySelectorAll('.wage-input').forEach(inp=>inp.placeholder = cur === 'khr' ? '800,000' : '200');
+  calculate();
+}
+function onPathChange(){
+  document.querySelectorAll('.radio-option').forEach(r=>r.classList.remove('checked'));
+  const val = document.querySelector('input[name="path"]:checked').value;
+  document.getElementById('opt-' + val).classList.add('checked');
+  calculate();
+}
+
+function getSelectedPath(){
+  return document.querySelector('input[name="path"]:checked').value;
+}
+
+function calculate(){
+  const rows = document.querySelectorAll('.period-row');
+  let totalMonths = 0;
+  let weightedWageSum = 0;
+  const periods = [];
+
+  rows.forEach(r=>{
+    const wageRaw = Math.max(0, parseNum(r.querySelector('.wage-input').value));
+    const months = Math.max(0, parseNum(r.querySelector('.months-input').value));
+    let wageKhr = currency === 'khr' ? wageRaw : wageRaw * EXCHANGE_RATE;
+    wageKhr = Math.min(wageKhr, WAGE_CEILING_KHR);
+    periods.push({ wageKhr, months, monthsBefore: totalMonths });
+    totalMonths += months;
+    weightedWageSum += wageKhr * months;
+  });
+
+  const years = totalMonths / 12;
+  const avgWageKhr = totalMonths > 0 ? weightedWageSum / totalMonths : 0;
+  let path = getSelectedPath();
+  const selectedPath = path;
+
+  let autoFallbackReason = null;
+  let interimOverride = false;
+  if(selectedPath === 'full180' && totalMonths < 180){ path = 'neither_auto'; autoFallbackReason = 'full180'; }
+  if(selectedPath === 'interim' && totalMonths < 12){ path = 'neither_auto'; autoFallbackReason = 'interim'; }
+  if(selectedPath === 'interim' && totalMonths >= 180){ path = 'full180'; interimOverride = true; }
+  const explicitNeither = selectedPath === 'neither';
+
+  const resultMonthly = document.getElementById('resultMonthly');
+  const resultLump = document.getElementById('resultLump');
+
+  if(path === 'interim' || path === 'full180'){
+    resultMonthly.style.display = 'block';
+    resultLump.style.display = 'none';
+
+    let effectiveYears, badgeText, badgeClass;
+    if(path === 'interim'){
+      effectiveYears = years + 15;
+      badgeText = 'តំបន់រង្វាន់ — បូក ១៥ឆ្នាំ';
+      badgeClass = 'badge bonus';
+    } else if(interimOverride){
+      effectiveYears = years;
+      badgeText = 'គណនាត្រង់ (គ្រប់ ១៨០ខែ)';
+      badgeClass = 'badge standard';
+    } else {
+      effectiveYears = years;
+      badgeText = 'គណនាត្រង់ (បង់ពេញ ១៨០ខែ)';
+      badgeClass = 'badge standard';
+    }
+    const pensionKhr = (Math.min(effectiveYears,15) * 0.0175 + Math.max(0, effectiveYears-15) * 0.01) * avgWageKhr;
+    const pensionUsd = pensionKhr / EXCHANGE_RATE;
+
+    document.getElementById('amountCur').textContent = currency === 'khr' ? '៛' : '$';
+    const mainVal = currency === 'khr' ? pensionKhr : pensionUsd;
+    document.getElementById('amountMain').textContent = groupSep(fmt(mainVal, currency==='khr'?0:2));
+    document.getElementById('amountSecondary').textContent = currency === 'khr'
+      ? `≈ $${fmt(pensionUsd,2)} / ខែ` : `≈ ${groupSep(fmt(pensionKhr,0))}៛ / ខែ`;
+
+    const badge = document.getElementById('phaseBadge');
+    badge.textContent = badgeText; badge.className = badgeClass;
+
+    document.getElementById('statMonths').textContent = `${groupSep(totalMonths)} ខែ (${fmt(years,1)} ឆ្នាំ)`;
+    document.getElementById('statEffective').textContent = `${fmt(effectiveYears,1)} ឆ្នាំ`;
+    document.getElementById('statAvgWage').textContent = currency === 'khr' ? `${groupSep(fmt(avgWageKhr,0))}៛` : `$${fmt(avgWageKhr/EXCHANGE_RATE,2)}`;
+
+    lastMonthlyPensionKhr = pensionKhr;
+    document.getElementById('deathBenefitLine').style.display = 'block';
+    document.getElementById('deathBenefitMonthly').textContent = currency === 'khr' ? `${groupSep(fmt(pensionKhr,0))}៛` : `$${fmt(pensionUsd,2)}`;
+    document.getElementById('deathBenefitAmt').textContent = currency === 'khr' ? `${groupSep(fmt(pensionKhr*5,0))}៛` : `$${fmt(pensionUsd*5,2)}`;
+
+    const clampedYears = Math.min(years, 30);
+    document.getElementById('marker').style.left = `${(clampedYears/30)*100}%`;
+    document.getElementById('marker').dataset.label = `${fmt(years,1)}ឆ្នាំ`;
+
+  } else {
+    resultMonthly.style.display = 'none';
+    resultLump.style.display = 'block';
+    lastMonthlyPensionKhr = 0;
+    document.getElementById('deathBenefitLine').style.display = 'none';
+
+    const lumpLabel = document.getElementById('lumpLabel');
+    if(explicitNeither){
+      lumpLabel.textContent = 'វិភាជន៍ជរាភាព (ប្រាក់តែម្តង បូក CPI)';
+    } else if(autoFallbackReason === 'interim'){
+      lumpLabel.textContent = `មិនទាន់គ្រប់ ១២ខែ (បាន ${groupSep(totalMonths)} ខែ) — វិភាជន៍`;
+    } else {
+      lumpLabel.textContent = `មិនទាន់គ្រប់ ១៨០ខែ (បាន ${groupSep(totalMonths)} ខែ) — វិភាជន៍`;
+    }
+
+    let baseContribKhr = 0;
+    let adjustedContribKhr = 0;
+    periods.forEach(p=>{
+      const contrib = 0.04 * p.wageKhr * p.months;
+      const midPointMonths = p.monthsBefore + p.months/2;
+      const yearsRemaining = Math.max(0, (totalMonths - midPointMonths) / 12);
+      const adjusted = contrib * Math.pow(1 + CPI_RATE, yearsRemaining);
+      baseContribKhr += contrib;
+      adjustedContribKhr += adjusted;
+    });
+    const adjustedContribUsd = adjustedContribKhr / EXCHANGE_RATE;
+    const cpiAddKhr = adjustedContribKhr - baseContribKhr;
+    const cpiAddPct = baseContribKhr > 0 ? (cpiAddKhr / baseContribKhr) * 100 : 0;
+
+    document.getElementById('lumpCur').textContent = currency === 'khr' ? '៛' : '$';
+    const mainVal = currency === 'khr' ? adjustedContribKhr : adjustedContribUsd;
+    document.getElementById('lumpMain').textContent = groupSep(fmt(mainVal, currency==='khr'?0:2));
+    document.getElementById('lumpSecondary').textContent = currency === 'khr'
+      ? `≈ $${fmt(adjustedContribUsd,2)}` : `≈ ${groupSep(fmt(adjustedContribKhr,0))}៛`;
+
+    document.getElementById('lumpStatMonths').textContent = `${groupSep(totalMonths)} ខែ (${fmt(years,1)} ឆ្នាំ)`;
+    document.getElementById('lumpStatContrib').textContent = currency === 'khr' ? `${groupSep(fmt(baseContribKhr,0))}៛` : `$${fmt(baseContribKhr/EXCHANGE_RATE,2)}`;
+    document.getElementById('lumpStatCpiAdd').textContent = (currency === 'khr' ? `${groupSep(fmt(cpiAddKhr,0))}៛` : `$${fmt(cpiAddKhr/EXCHANGE_RATE,2)}`) + ` (+${fmt(cpiAddPct,1)}%)`;
+
+    const clampedYears = Math.min(years, 30);
+    document.getElementById('marker').style.left = `${(clampedYears/30)*100}%`;
+    document.getElementById('marker').dataset.label = `${fmt(years,1)}ឆ្នាំ`;
+  }
+}
+
+function onSurvCompChange(){
+  document.querySelectorAll('#panel-3 .radio-option').forEach(r=>r.classList.remove('checked'));
+  const val = document.querySelector('input[name="survComposition"]:checked').value;
+  document.getElementById('opt-surv-' + val).classList.add('checked');
+  calcSurvivor();
+}
+function calcSurvivor(){
+  const base = Math.max(0, parseNum(document.getElementById('survivorBase').value));
+  const comp = document.querySelector('input[name="survComposition"]:checked').value;
+  let spousePct = 0, childrenPct = 0;
+  if(comp === 'both'){ spousePct = 0.5; childrenPct = 0.5; }
+  else if(comp === 'spouse'){ spousePct = 1; childrenPct = 0; }
+  else { spousePct = 0; childrenPct = 1; }
+
+  const spouseAmt = base * spousePct;
+  const childrenAmt = base * childrenPct;
+  const total = spouseAmt + childrenAmt;
+
+  document.getElementById('survTotal').textContent = groupSep(fmt(total, 0));
+  document.getElementById('survTotalUsd').textContent = `≈ $${fmt(total / EXCHANGE_RATE, 2)} / ខែ`;
+  document.getElementById('survSpouseAmt').textContent = `${groupSep(fmt(spouseAmt, 0))}៛ / ខែ`;
+  document.getElementById('survChildrenAmt').textContent = `${groupSep(fmt(childrenAmt, 0))}៛ / ខែ`;
+}
+
+function calcDependent(){
+  const base = Math.max(0, parseNum(document.getElementById('dependentBase').value));
+  const total = base * 0.45;
+  document.getElementById('depTotal').textContent = groupSep(fmt(total, 0));
+  document.getElementById('depTotalUsd').textContent = `≈ $${fmt(total / EXCHANGE_RATE, 2)} / ខែ`;
+}
+
+function copyFromTab1(fieldId){
+  const el = document.getElementById(fieldId);
+  el.value = Math.round(lastMonthlyPensionKhr).toLocaleString('en-US');
+  if(fieldId === 'survivorBase') calcSurvivor();
+  else if(fieldId === 'dependentBase') calcDependent();
+}
+
+// ===== INIT =====
+addRow();
+calculate();
+calcSurvivor();
+calcDependent();
+// Add one default contrib row
+addContribRow();
+</script>
+
+</body>
+</html>
